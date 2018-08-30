@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_211253) do
+ActiveRecord::Schema.define(version: 2018_08_30_175510) do
+
+  create_table "picks", force: :cascade do |t|
+    t.date "date"
+    t.string "winners"
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

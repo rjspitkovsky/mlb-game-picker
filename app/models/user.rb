@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :picks 
   validates :password, length: {minimum: 6}
   validates :email, uniqueness: true
   validates :username, presence: true
