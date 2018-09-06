@@ -1,8 +1,26 @@
+<% if @pick.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@pick.errors.count, "error") %>
+      prohibited this account from being saved:
+    </h2>
+
+    <ul>
+    <% @pick.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <h1>Testing, today's picks will go here</h1>
 
 <%#I want a form to wrap around this div, when submitted sends a string of the picks as winners and creates a new pick %>
 <%= form_for @pick do |f| %>
-Winners: <%=f.text_field :winners, id: 'winners' %>
+<%= f.text_field :winners %>
+<ul id="winners"></ul>
+
 <%= f.submit %>
 <% end %>
 
@@ -27,7 +45,9 @@ Handlebars.registerHelper('convertDateTime', function(date) {
   this.sayHello = (event) => {
     event.preventDefault()
     console.log(event.target.innerHTML)
-    document.getElementById("winners").append(event.target.innerHTML + `<br>`)
+    const winner = document.createElement("li")
+    winner.innerHTML = event.target.innerHTML
+    document.getElementById("winners").append(winner)
   }
 
   $(function () {
