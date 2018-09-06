@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/make_picks' => 'picks#new'
+  post '/picks' => 'picks#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

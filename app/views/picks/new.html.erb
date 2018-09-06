@@ -1,5 +1,11 @@
 <h1>Testing, today's picks will go here</h1>
 
+<%#I want a form to wrap around this div, when submitted sends a string of the picks as winners and creates a new pick %>
+<%= form_for @pick do |f| %>
+Winners: <%=f.text_field :winners, id: 'winners' %>
+<%= f.submit %>
+<% end %>
+
 
 <div id="games">
 </div>
@@ -7,6 +13,7 @@
 <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
 <script type="text/javascript">
+
 Handlebars.registerHelper('convertDateTime', function(date) {
   const dateTime = new Date(date)
   const formattedDateTime = dateTime.toLocaleString(undefined, {
@@ -16,6 +23,12 @@ Handlebars.registerHelper('convertDateTime', function(date) {
   })
   return formattedDateTime
 })
+
+  this.sayHello = (event) => {
+    event.preventDefault()
+    console.log(event.target.innerHTML)
+  }
+
   $(function () {
     $.get("https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1", function(data) {
       const template = Handlebars.compile(document.getElementById("game-info").innerHTML)
@@ -35,13 +48,13 @@ Handlebars.registerHelper('convertDateTime', function(date) {
         <div class="game">
         <p>{{teams.away.team.name}}  ({{teams.away.leagueRecord.wins}} - {{teams.away.leagueRecord.losses}})</p>
 
-        <button>Pick {{teams.away.team.name}}</button>
+        Pick<button onclick="sayHello(event)">{{teams.away.team.name}}</button>
 
         <h2>{{teams.away.score}}</h2>
         <h3>at</h3>
         <h2>{{teams.home.score}}</h2>
 
-        <button>Pick {{teams.home.team.name}}</button>
+        Pick<button onclick="sayHello(event)">{{teams.home.team.name}}</button>
 
         <p>{{teams.home.team.name}}   ({{teams.home.leagueRecord.wins}} - {{teams.home.leagueRecord.losses}})</p>
       </div>
