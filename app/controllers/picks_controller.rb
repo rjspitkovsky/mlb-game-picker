@@ -1,3 +1,4 @@
+require 'pry'
 class PicksController < ApplicationController
 
 
@@ -6,5 +7,6 @@ class PicksController < ApplicationController
   end
 
   def create
-  end 
+    binding.pry 
+  end
 end

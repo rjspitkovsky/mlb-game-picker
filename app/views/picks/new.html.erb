@@ -27,6 +27,7 @@ Handlebars.registerHelper('convertDateTime', function(date) {
   this.sayHello = (event) => {
     event.preventDefault()
     console.log(event.target.innerHTML)
+    document.getElementById("winners").append(event.target.innerHTML + `<br>`)
   }
 
   $(function () {
